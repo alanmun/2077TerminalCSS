@@ -1,0 +1,483 @@
+/* ==UserStyle==
+@name           chatgpt.com
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@description    A new userstyle
+@author         Me
+==/UserStyle== */
+@-moz-document url-prefix("https://chatgpt.com/") {
+    :root {
+        --bg-dark: oklch(0.08 0.02 141);
+        --bg: var(--bg-dark);
+        --bg-light: oklch(0.12 0.02 141);
+        --text: oklch(0.96 0.04 141);
+        --text-muted: oklch(0.76 0.04 141);
+        --highlight: oklch(0.5 0.04 141);
+        --border: oklch(0.4 0.04 141);
+        --border-muted: oklch(0.3 0.04 141);
+        --primary: oklch(0.76 0.1 141);
+        --secondary: oklch(0.76 0.1 321);
+        --danger: oklch(0.7 0.05 30);
+        --warning: oklch(0.7 0.05 100);
+        --success: oklch(0.7 0.05 160);
+        --info: oklch(0.7 0.05 260);
+
+        --font-body: "IBM Plex Mono", "Cascadia Mono", "Fira Code", "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+        --font-mono: "IBM Plex Mono", "Cascadia Mono", "Fira Code", "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+
+        --radius-sm: 4px;
+        --radius-md: 8px;
+        --radius-lg: 12px;
+
+        --shadow-soft: 0 0 20px oklch(0.4 0.08 141 / 0.35);
+        --shadow-strong: 0 0 35px oklch(0.76 0.12 141 / 0.5);
+
+        --border-width: 1px;
+        --border-width-strong: 2px;
+
+        --transition-fast: 120ms ease-out;
+        --transition-med: 200ms ease-out;
+    }
+
+    body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-body);
+        text-rendering: geometricPrecision;
+    }
+
+    /* subtle scanlines for the whole app */
+    body::before {
+        content: "";
+        pointer-events: none;
+        position: fixed;
+        inset: 0;
+        background-image: repeating-linear-gradient( to bottom,
+        oklch(0 0 0 / 0) 0,
+        oklch(0 0 0 / 0) 1px,
+        oklch(0 0 0 / var(--scanline-opacity)) 2px);
+        mix-blend-mode: soft-light;
+        opacity: 0.9;
+        z-index: 999999;
+    }
+
+    /* ------------- messages: shared typography ------------- */
+    .markdown.prose {
+        color: var(--text);
+        font-family: var(--font-body);
+        max-width: 70ch;
+        line-height: 1.6;
+    }
+
+    .markdown.prose p {
+        margin: 0.35rem 0;
+    }
+
+    .markdown.prose h1,
+    .markdown.prose h2,
+    .markdown.prose h3 {
+        color: var(--primary);
+        text-shadow: 0 0 8px color-mix(in oklch, var(--primary) 40%, black);
+        margin-top: 1.2em;
+        margin-bottom: 0.4em;
+    }
+
+    .markdown.prose ul,
+    .markdown.prose ol {
+        margin-left: 1.25rem;
+        padding-left: 0.25rem;
+    }
+
+    .markdown.prose li {
+        margin: 0.2rem 0;
+    }
+
+    /* inline code (NOT fenced code blocks) */
+    .markdown.prose code:not([class*="language-"]) {
+        font-family: var(--font-mono);
+        font-size: 0.9em;
+        background: color-mix(in oklch, var(--bg-light) 70%, black);
+        padding: 0.05rem 0.3rem;
+        border-radius: var(--radius-sm);
+        border: 1px solid color-mix(in oklch, var(--border-muted) 70%, black);
+    }
+
+    /* ------------- user bubble ------------- */
+    [data-message-author-role="user"] .user-message-bubble-color {
+        background: color-mix(in oklch, var(--bg-light) 70%, black);
+        color: var(--text);
+        border-radius: var(--radius-lg);
+        border: var(--border-width) solid var(--border);
+        box-shadow: var(--shadow-soft);
+        font-family: var(--font-mono);
+        text-shadow: 0 0 4px color-mix(in oklch, var(--primary) 30%, transparent);
+        transition: box-shadow var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    [data-message-author-role="user"] .user-message-bubble-color:hover {
+        box-shadow: var(--shadow-strong);
+        border-color: var(--highlight);
+        transform: translateY(-1px);
+    }
+
+    /* make user text a bit more "phosphor" green */
+    [data-message-author-role="user"] .user-message-bubble-color .whitespace-pre-wrap {
+        color: var(--primary);
+    }
+
+    /* ------------- assistant bubble ------------- */
+    [data-message-author-role="assistant"] .markdown.prose {
+        background: linear-gradient( 135deg,
+        color-mix(in oklch, var(--bg) 90%, black) 0%,
+        color-mix(in oklch, var(--bg-dark) 90%, black) 100%);
+        border-radius: var(--radius-lg);
+        border: var(--border-width) solid var(--border-muted);
+        box-shadow: var(--shadow-soft);
+        padding: 1rem 1.25rem;
+        margin-block: 0.4rem;
+        margin-inline: 0;
+        /* full width on mobile */
+    }
+
+    /* on wider viewports, keep assistant bubble slightly narrower than full width */
+    @media (min-width: 900px) {
+        [data-message-author-role="assistant"] .markdown.prose {
+            max-width: 72ch;
+            margin-inline: 0;
+        }
+    }
+
+    /* subtle neon edge on hover / focus */
+    [data-message-author-role="assistant"] .markdown.prose:hover {
+        border-color: var(--highlight);
+        box-shadow: var(--shadow-strong);
+    }
+
+    /* ------------- assistant "thought for Xs" chip ------------- */
+    .agent-turn .text-token-text-secondary:hover {
+        color: var(--primary);
+    }
+
+    /* clamping this so the chip looks like a pill in your theme
+     (very intentionally loose selector, but harmless) */
+    .agent-turn button span .truncate {
+        padding: 0.15rem 0.5rem;
+        border-radius: 999px;
+        background: color-mix(in oklch, var(--bg-light) 40%, transparent);
+        border: 1px solid color-mix(in oklch, var(--highlight) 40%, transparent);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+
+    /* ------------- code blocks (assistant) ------------- */
+    /* outer <pre> wrapper: remove weird overflow + normalize spacing */
+    .markdown.prose pre {
+        margin: 0.75rem 0;
+        padding: 0;
+        background: transparent;
+        border-radius: var(--radius-lg);
+    }
+
+    .markdown.prose pre code {
+        font-family: var(--font-mono);
+        font-size: 0.9rem;
+    }
+
+    /* main code "card" container */
+    .markdown.prose pre .bg-token-sidebar-surface-primary {
+        background: radial-gradient( circle at top left,
+        color-mix(in oklch, var(--bg-light) 50%, black) 0%,
+        color-mix(in oklch, var(--bg-dark) 90%, black) 60%);
+        border-radius: var(--radius-lg);
+        border: var(--border-width) solid var(--border);
+        box-shadow: var(--shadow-soft);
+        overflow: hidden;
+    }
+
+    /* header bar that says "css", "js", etc */
+    .markdown.prose pre .bg-token-sidebar-surface-primary > .flex {
+        background: linear-gradient( 90deg,
+        color-mix(in oklch, var(--bg-dark) 80%, black),
+        color-mix(in oklch, var(--bg) 80%, black));
+        border-bottom: 1px solid color-mix(in oklch, var(--border-muted) 80%, black);
+        font-family: var(--font-mono);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+
+    /* "copy code" pill on the right */
+    .markdown.prose pre .bg-token-bg-elevated-secondary {
+        background: color-mix(in oklch, var(--bg-dark) 80%, black);
+        border-radius: var(--radius-sm);
+        border: 1px solid color-mix(in oklch, var(--border-muted) 80%, black);
+    }
+
+    .markdown.prose pre .bg-token-bg-elevated-secondary button {
+        font-family: var(--font-mono);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+
+    /* code content area */
+    .markdown.prose pre .overflow-y-auto {
+        background: color-mix(in oklch, var(--bg-dark) 90%, black);
+    }
+
+    .markdown.prose pre .overflow-y-auto code {
+        display: block;
+        white-space: pre;
+        text-shadow: 0 0 4px color-mix(in oklch, var(--primary) 20%, transparent);
+    }
+
+    /* language-specific accent (optional; example for css/js) */
+    .markdown.prose pre code.language-css {
+        border-left: 2px solid var(--secondary);
+        padding-left: 0.75rem;
+    }
+
+    .markdown.prose pre code.language-js {
+        border-left: 2px solid var(--warning);
+        padding-left: 0.75rem;
+    }
+
+    /* ------------- composer / input bar ------------- */
+    form[data-type="unified-composer"] {
+        border-top: none;
+        margin-top: 0;
+        padding-top: 0.35rem;
+    }
+
+    form[data-type="unified-composer"] .bg-token-bg-primary {
+        background: color-mix(in oklch, var(--bg) 85%, black);
+        border: none;
+        border-radius: 0 !important;
+        box-shadow: none;
+        padding: 0.25rem 0.35rem;
+        display: flex !important;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    form[data-type="unified-composer"] ._prosemirror-parent_1dsxi_2,
+    form[data-type="unified-composer"] .ProseMirror {
+        font-family: var(--font-mono);
+        color: var(--text);
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        padding: 0.25rem 0.35rem;
+        caret-color: transparent; /* hide thin caret */
+        text-shadow: 0 0 4px color-mix(in oklch, var(--primary) 35%, transparent);
+        position: relative;
+        min-height: 2.5rem; /* avoid growth on focus */
+        box-shadow: none;
+        line-height: 1.3;
+        display: flex;
+        align-items: center;
+    }
+
+    /* flatten layout into flex and push + to the right */
+    form[data-type="unified-composer"] [class*="grid-template-areas"] {
+        display: contents !important;
+    }
+
+    form[data-type="unified-composer"] [class*="grid-area:primary"] {
+        order: 1;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        margin: 0 !important;
+        padding: 0 !important;
+        min-width: 0;
+    }
+
+    form[data-type="unified-composer"] [class*="grid-area:trailing"] {
+        order: 2;
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    form[data-type="unified-composer"] [class*="grid-area:leading"] {
+        order: 3;
+        align-self: center;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* fat blinking block cursor instead of placeholder text */
+    form[data-type="unified-composer"] .ProseMirror p.placeholder {
+        color: transparent;
+        position: relative;
+    }
+
+    form[data-type="unified-composer"] .ProseMirror p.placeholder::before {
+        content: "▯";
+        color: var(--primary);
+        animation: none;
+        font-size: 1.2em;
+        line-height: 1;
+    }
+
+    /* hollow caret when unfocused, solid when focused */
+    form[data-type="unified-composer"] .ProseMirror::after {
+        content: "▯";
+        color: var(--primary);
+        display: inline-block;
+        margin-left: 1px;
+        font-size: 1.2em;
+        line-height: 1;
+        vertical-align: middle;
+    }
+
+    form[data-type="unified-composer"] .ProseMirror:focus::after {
+        content: "█";
+    }
+
+    /* remove duplicate placeholder caret when focused */
+    form[data-type="unified-composer"] .ProseMirror:focus p.placeholder::before {
+        display: none;
+    }
+
+    form[data-type="unified-composer"] .ProseMirror p {
+        margin: 0;
+        line-height: 1.25;
+    }
+
+    /* ------------- bottom shell / thread container ------------- */
+    #thread-bottom-container {
+        background: var(--bg-dark) !important;
+        border-top: none;
+        box-shadow: none;
+        padding-top: 0.15rem;
+    }
+
+    #thread-bottom,
+    #thread-bottom .mx-auto,
+    #thread-bottom .max-w-\(--thread-content-max-width\),
+    #thread-bottom .flex {
+        background: var(--bg-dark) !important;
+    }
+
+    /* blend composer with bottom shell */
+    #thread-bottom-container form[data-type="unified-composer"] .bg-token-bg-primary {
+        background: var(--bg-dark) !important;
+        border-color: transparent !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        padding: 0.15rem 0.35rem !important;
+    }
+
+    /* hide footer disclaimer / system text in composer */
+    #thread-bottom-container .text-xs,
+    #thread-bottom-container [class*="text-xs"],
+    #thread-bottom-container [data-testid="composer-disclaimer"] {
+        display: none !important;
+    }
+
+    /* kill residual radius, shadows, gradients in grid shells */
+    #thread-bottom-container .shadow-short,
+    #thread-bottom-container [class*="shadow-"] {
+        box-shadow: none !important;
+    }
+
+    #thread-bottom-container [class*="bg-clip-padding"],
+    #thread-bottom-container [class*="bg-token-bg-primary"] {
+        background-image: none !important;
+    }
+
+    /* generic CTA/btn cleanup for inline chips like "Company knowledge" */
+    button.btn,
+    .btn.btn-secondary {
+        border-radius: 2px !important;
+        border: 1px solid color-mix(in oklch, var(--border) 80%, black);
+        background: var(--bg-dark) !important;
+        color: var(--text) !important;
+        box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--border-muted) 60%, black);
+        font-family: var(--font-mono);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+
+    .btn .inline-flex.rounded-full {
+        border-radius: 2px !important;
+        background: color-mix(in oklch, var(--primary) 10%, transparent) !important;
+        color: var(--primary) !important;
+    }
+
+    @keyframes terminal-caret {
+        0% { opacity: 1; }
+        50% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+
+    /* coarse TUI knobs for composer buttons */
+    form[data-type="unified-composer"] .composer-btn,
+    form[data-type="unified-composer"] .composer-secondary-button-color {
+        border-radius: 2px !important;
+        border: 1px solid color-mix(in oklch, var(--border) 80%, black);
+        background: var(--bg-dark);
+        color: var(--text-muted);
+        box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--border-muted) 60%, black);
+        height: 2.4rem;
+        width: 2.4rem;
+        font-family: var(--font-mono);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+
+    /* submit button matches knobs */
+    #composer-submit-button,
+    #composer-submit-button.composer-submit-btn {
+        border-radius: 2px !important;
+        border: 1px solid color-mix(in oklch, var(--border) 80%, black);
+        background: var(--bg-dark) !important;
+        color: var(--text);
+        box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--border-muted) 60%, black);
+        height: 2.4rem !important;
+        width: 2.4rem !important;
+    }
+
+    #composer-submit-button svg {
+        filter: drop-shadow(0 0 4px color-mix(in oklch, var(--primary) 25%, transparent));
+    }
+
+    form[data-type="unified-composer"] .composer-btn:hover,
+    form[data-type="unified-composer"] .composer-secondary-button-color:hover {
+        border-color: var(--highlight);
+        color: var(--primary);
+        box-shadow: 0 0 12px color-mix(in oklch, var(--highlight) 40%, transparent);
+    }
+
+    form[data-type="unified-composer"] .composer-btn svg,
+    form[data-type="unified-composer"] .composer-secondary-button-color svg {
+        filter: drop-shadow(0 0 4px color-mix(in oklch, var(--primary) 25%, transparent));
+    }
+
+    /* keep the primary text line vertically centered */
+    form[data-type="unified-composer"] [class*="grid-template-areas"] > [class*="grid-area:primary"] {
+        margin: 0 !important;
+        padding: 0.15rem 0 !important;
+        min-height: 2.4rem;
+        display: flex;
+        align-items: center;
+    }
+
+    form[data-type="unified-composer"] ._prosemirror-parent_1dsxi_2 {
+        display: flex;
+        align-items: center;
+    }
+
+    form[data-type="unified-composer"] .ProseMirror {
+        display: flex;
+        align-items: center;
+    }
+
+    form[data-type="unified-composer"] .ProseMirror p {
+        margin: 0;
+        line-height: 1.25;
+    }
+}
