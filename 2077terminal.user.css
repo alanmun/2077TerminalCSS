@@ -505,6 +505,75 @@
         box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--border-muted) 60%, black) !important;
     }
 
+    /* Header: top app bar shell */
+    header#page-header {
+        background: linear-gradient(180deg,
+            color-mix(in oklch, var(--bg-dark) 88%, black) 0%,
+            color-mix(in oklch, var(--bg-dark) 96%, black) 100%) !important;
+        border-bottom: 1px solid color-mix(in oklch, var(--border-muted) 70%, black) !important;
+        box-shadow: 0 0 20px oklch(0 0 0 / 0.25), inset 0 -1px 0 color-mix(in oklch, var(--border) 40%, transparent) !important;
+        backdrop-filter: none !important;
+    }
+
+    /* Button: Model selector (current model) */
+    button[aria-label^="Model selector, current model is"],
+    button[data-testid="model-switcher-dropdown-button"] {
+        border-radius: 2px !important;
+        border: 1px solid color-mix(in oklch, var(--border) 80%, black) !important;
+        background: var(--bg-dark) !important;
+        color: var(--text) !important;
+        box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--border-muted) 60%, black) !important;
+    }
+
+    /* Button: Model selector — hover/focus */
+    button[aria-label^="Model selector, current model is"]:hover,
+    button[data-testid="model-switcher-dropdown-button"]:hover,
+    button[aria-label^="Model selector, current model is"]:focus-visible,
+    button[data-testid="model-switcher-dropdown-button"]:focus-visible {
+        border-color: var(--highlight) !important;
+        color: var(--primary) !important;
+        box-shadow: 0 0 12px color-mix(in oklch, var(--highlight) 40%, transparent) !important;
+    }
+
+    /* Button: Model selector — icon/text tint */
+    button[aria-label^="Model selector, current model is"] .text-token-text-tertiary,
+    button[data-testid="model-switcher-dropdown-button"] .text-token-text-tertiary,
+    button[aria-label^="Model selector, current model is"] .icon-sm,
+    button[data-testid="model-switcher-dropdown-button"] .icon-sm {
+        color: var(--text-muted) !important;
+        filter: drop-shadow(0 0 4px color-mix(in oklch, var(--primary) 20%, transparent));
+    }
+
+    /* Header actions cluster */
+    #conversation-header-actions .btn,
+    #conversation-header-actions button {
+        border-radius: 2px !important;
+    }
+
+    /* Button: Open conversation options (kebab) */
+    button[aria-label="Open conversation options"],
+    [data-testid="conversation-options-button"] {
+        border-radius: 2px !important;
+        border: 1px solid color-mix(in oklch, var(--border) 80%, black) !important;
+        background: var(--bg-dark) !important;
+        color: var(--text-muted) !important;
+        box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--border-muted) 60%, black) !important;
+    }
+
+    /* Button: Open conversation options — hover */
+    button[aria-label="Open conversation options"]:hover,
+    [data-testid="conversation-options-button"]:hover {
+        border-color: var(--highlight) !important;
+        color: var(--primary) !important;
+        box-shadow: 0 0 12px color-mix(in oklch, var(--highlight) 40%, transparent) !important;
+    }
+
+    /* Button: Open conversation options — icon glow */
+    button[aria-label="Open conversation options"] svg,
+    [data-testid="conversation-options-button"] svg {
+        filter: drop-shadow(0 0 4px color-mix(in oklch, var(--primary) 25%, transparent));
+    }
+
     /* Button: Copy — hover */
     button[aria-label="Copy"]:hover,
     button[data-testid="copy-turn-action-button"]:hover,
