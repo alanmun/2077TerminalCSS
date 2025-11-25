@@ -186,16 +186,24 @@
         color: var(--primary);
     }
 
-    /* clamping this so the chip looks like a pill in your theme
-     (very intentionally loose selector, but harmless) */
+    /* Make the thinking chip rectangular to match theme (remove rounding) */
     .agent-turn button span .truncate {
         padding: 0.15rem 0.5rem;
-        border-radius: 999px;
+        border-radius: 0; /* was 999px */
         background: color-mix(in oklch, var(--bg-light) 40%, transparent);
         border: 1px solid color-mix(in oklch, var(--highlight) 40%, transparent);
         font-size: 0.75rem;
         text-transform: uppercase;
         letter-spacing: 0.08em;
+    }
+
+    /* Also catch container wrappers that might be applying rounding */
+    .agent-turn .relative.w-full.text-start,
+    .agent-turn .flex.w-full,
+    .agent-turn .origin-top-start.relative.flex.flex-col.gap-2.overflow-x-clip,
+    .agent-turn .max-w-\[calc\(0\.8\*var\(--thread-content-max-width,40rem\)\)\] {
+        border-radius: 0 !important;
+        overflow: visible; /* avoid masking squared corners */
     }
 
     /* ------------- code blocks (assistant) ------------- */
