@@ -331,7 +331,7 @@
         color: var(--primary);
         display: inline-block;
         margin-left: 1px;
-        font-size: 1.2em;
+        font-size: 1.5em;
         line-height: 1;
         vertical-align: middle;
         transform: scale(1.5);
@@ -340,6 +340,7 @@
 
     form[data-type="unified-composer"] .ProseMirror:focus::after {
         content: "█";
+        font-size: 1.2em;
         transform: none;
     }
 
