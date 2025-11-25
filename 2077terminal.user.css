@@ -115,9 +115,11 @@
     }
 
     [data-message-author-role="user"] .user-message-bubble-color:hover {
-        box-shadow: var(--shadow-strong);
-        border-color: var(--highlight);
-        transform: translateY(-1px);
+        box-shadow: none;
+        border-color: transparent;
+        transform: none;
+        background: inherit;
+        outline: none;
     }
 
     /* make user text a softer, lighter blue for dark backgrounds */
@@ -148,10 +150,12 @@
         }
     }
 
-    /* subtle neon edge on hover / focus */
+    /* remove hover backlight/outline */
     [data-message-author-role="assistant"] .markdown.prose:hover {
-        border-color: var(--highlight);
-        box-shadow: var(--shadow-strong);
+        border-color: transparent;
+        box-shadow: none;
+        background: inherit;
+        outline: none;
     }
 
     /* ------------- assistant "thought for Xs" chip ------------- */
