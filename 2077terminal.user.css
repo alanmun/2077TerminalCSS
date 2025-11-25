@@ -522,8 +522,27 @@
     nav[aria-label="Chat history"] .sticky,
     nav[aria-label="Chat history"] aside,
     nav[aria-label="Chat history"] .group/scrollport {
-        background: color-mix(in oklch, var(--bg-dark) 94%, black) !important;
+        background: var(--bg-dark) !important;
         box-shadow: none !important;
+    }
+
+    /* Sidebar: scrollbar hard-rect (VS Code-like) */
+    nav[aria-label="Chat history"] {
+        scrollbar-width: thin;
+        scrollbar-color: color-mix(in oklch, var(--border) 70%, black) transparent;
+    }
+    nav[aria-label="Chat history"]::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+    nav[aria-label="Chat history"]::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    nav[aria-label="Chat history"]::-webkit-scrollbar-thumb {
+        background: color-mix(in oklch, var(--border) 70%, black);
+        border: 2px solid transparent; /* creates inset track gap */
+        background-clip: padding-box;
+        border-radius: 0;
     }
 
     /* Sidebar: section headers ("Projects", "Chats") */
@@ -537,7 +556,7 @@
     /* Sidebar: top header row (Home + collapse) */
     #sidebar-header > a[aria-label="Home"],
     #sidebar-header button[aria-label="Close sidebar"] {
-        border-radius: 2px !important;
+        border-radius: 0 !important;
         border: 1px solid color-mix(in oklch, var(--border) 80%, black) !important;
         background: var(--bg-dark) !important;
         color: var(--text-muted) !important;
@@ -568,7 +587,7 @@
     a.__menu-item[href="/codex"],
     /* Button: GPTs */
     a[data-testid="explore-gpts-button"].__menu-item {
-        border-radius: 2px !important;
+        border-radius: 0 !important;
         border: 1px solid color-mix(in oklch, var(--border) 80%, black) !important;
         background: var(--bg-dark) !important;
         color: var(--text) !important;
@@ -577,7 +596,7 @@
 
     /* Note: :has and :contains support varies; fallback: style all root menu items */
     nav[aria-label="Chat history"] .__menu-item.hoverable {
-        border-radius: 2px;
+        border-radius: 0;
     }
 
     /* Sidebar items hover */
@@ -602,7 +621,7 @@
     /* Sidebar: expando section header chips (Projects/Chats row) */
     .group.sidebar-expando-section .__menu-item[data-no-hover-bg="true"],
     .group\/sidebar-expando-section .__menu-item[data-no-hover-bg="true"] {
-        border-radius: 2px !important;
+        border-radius: 0 !important;
         border: 1px solid color-mix(in oklch, var(--border-muted) 70%, black) !important;
         background: color-mix(in oklch, var(--bg) 90%, black) !important;
         color: var(--text-muted) !important;
@@ -614,7 +633,7 @@
     .group.sidebar-expando-section .__menu-item .__menu-item-trailing-btn,
     .__menu-item .__menu-item-trailing-btn,
     button[aria-label="Open conversation options"] {
-        border-radius: 2px !important;
+        border-radius: 0 !important;
         border: 1px solid color-mix(in oklch, var(--border) 80%, black) !important;
         background: var(--bg-dark) !important;
         color: var(--text-muted) !important;
@@ -638,7 +657,7 @@
 
     /* Sidebar: history items rows */
     nav[aria-label="Chat history"] #history .__menu-item.hoverable {
-        border-radius: 2px !important;
+        border-radius: 0 !important;
         border: 1px solid color-mix(in oklch, var(--border) 80%, black) !important;
         background: var(--bg-dark) !important;
         color: var(--text) !important;
@@ -660,7 +679,7 @@
     /* Sidebar: bottom profile button and CTA */
     /* Button: Open profile menu */
     [data-testid="accounts-profile-button"].__menu-item {
-        border-radius: 2px !important;
+        border-radius: 0 !important;
         border: 1px solid color-mix(in oklch, var(--border) 80%, black) !important;
         background: var(--bg-dark) !important;
         color: var(--text) !important;
@@ -675,7 +694,7 @@
 
     /* Button: Invite team members (bottom CTA) */
     .border-token-interactive-border-secondary-default.rounded-full.border {
-        border-radius: 2px !important;
+        border-radius: 0 !important;
         border: 1px solid color-mix(in oklch, var(--border) 80%, black) !important;
         background: var(--bg-dark) !important;
         color: var(--text) !important;
