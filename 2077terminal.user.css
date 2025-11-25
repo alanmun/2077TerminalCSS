@@ -132,7 +132,7 @@
         color-mix(in oklch, var(--bg-dark) 90%, black) 100%);
         border-radius: 0;
         border: none;
-        color: oklch(0.72 0.12 30);
+        color: oklch(0.66 0.15 25);
         box-shadow: var(--shadow-soft);
         padding: 1rem 1.25rem;
         margin-block: 0.4rem;
