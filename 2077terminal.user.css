@@ -314,7 +314,7 @@
         position: relative;
     }
 
-    form[data-type="unified-composer"] .ProseMirror p.placeholder::before {
+    /* form[data-type="unified-composer"] .ProseMirror p.placeholder::before {
         content: "▯";
         color: var(--primary);
         animation: none;
@@ -323,7 +323,7 @@
         display: inline-block;
         transform: scale(1.5);
         transform-origin: left center;
-    }
+    } */
 
     /* hollow caret when unfocused, solid when focused */
     form[data-type="unified-composer"] .ProseMirror::after {
