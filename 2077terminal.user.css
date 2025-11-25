@@ -308,52 +308,6 @@
         padding: 0 !important;
     }
 
-    /* fat blinking block cursor instead of placeholder text */
-    form[data-type="unified-composer"] .ProseMirror p.placeholder {
-        color: transparent;
-        position: relative;
-    }
-
-    /* form[data-type="unified-composer"] .ProseMirror p.placeholder::before {
-        content: "▯";
-        color: var(--primary);
-        animation: none;
-        font-size: 1.2em;
-        line-height: 1;
-        display: inline-block;
-        transform: scale(1.5);
-        transform-origin: left center;
-    } */
-
-    /* hollow caret when unfocused, solid when focused */
-    form[data-type="unified-composer"] .ProseMirror::after {
-        content: "▯";
-        color: var(--primary);
-        display: inline-block;
-        margin-left: -4px;
-        line-height: 1;
-        vertical-align: baseline;
-        transform: scale(2);
-        transform-origin: left center;
-        pointer-events: none;
-    }
-
-    form[data-type="unified-composer"] .ProseMirror:focus::after {
-        content: "█";
-        margin-left: 1px;
-        transform: none;
-    }
-
-    /* remove duplicate placeholder caret when focused */
-    form[data-type="unified-composer"] .ProseMirror:focus p.placeholder::before {
-        display: none;
-    }
-
-    form[data-type="unified-composer"] .ProseMirror p {
-        margin: 0;
-        line-height: 1.25;
-    }
-
     /* ------------- bottom shell / thread container ------------- */
     #thread-bottom-container {
         background: var(--bg-dark) !important;
