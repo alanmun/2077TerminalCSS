@@ -6,8 +6,8 @@
 - No build artifacts, compiled assets, or test directories are present; edits go directly into the CSS file.
 
 ## Design of the Theme
-- The theme is a fake terminal theme for chatgpt.
-  - The user's cursor should be a fat caret
+- The theme is a terminal theme for chatgpt, depicting the chat interface as if it was a sci-fi TUI.
+  - The user's cursor should be a fat caret, hollow when unfocused, solid when focused.
   - Input bar blends in with the chat interface
   - ChatGPT's output is made to look like any output on a terminal
   - The user's chats look like fired off commands
