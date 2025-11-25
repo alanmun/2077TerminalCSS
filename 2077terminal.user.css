@@ -46,6 +46,16 @@
         text-rendering: geometricPrecision;
     }
 
+    /* Ensure the composer container blends with chat background (kills default gray) */
+    #thread-bottom-container,
+    #thread-bottom-container *:where(.bg-token-bg-primary),
+    #thread-bottom-container .bg-token-bg-primary,
+    #thread-bottom-container form[data-type="unified-composer"] .bg-token-bg-primary {
+        background: var(--bg-dark) !important;
+        border-color: transparent !important;
+        box-shadow: none !important;
+    }
+
     /* subtle scanlines for the whole app */
     body::before {
         content: "";
@@ -261,9 +271,9 @@
         border-radius: 0 !important;
         box-shadow: none;
         padding: 0.25rem 0.35rem;
-        display: flex !important;
+        display: grid !important; /* changed from flex to grid for area control */
         align-items: center;
-        gap: 0.75rem;
+        gap: 0.5rem;
     }
 
     form[data-type="unified-composer"] ._prosemirror-parent_1dsxi_2,
@@ -289,6 +299,50 @@
         display: contents !important;
     }
 
+    /* Keep primary row as a single horizontal strip: input + leading + trailing inline */
+    form[data-type="unified-composer"] .bg-token-bg-primary {
+        display: grid !important;
+        grid-template-areas: 'leading primary trailing' '._ footer ._' !important;
+        grid-template-columns: auto 1fr auto !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+    }
+
+    /* Make leading/trailing sit on the same row as the input */
+    form[data-type="unified-composer"] [class*="grid-area:leading"] {
+        order: 0 !important;
+        grid-area: leading !important;
+        align-self: center !important;
+    }
+    form[data-type="unified-composer"] [class*="grid-area:primary"] {
+        order: 1 !important;
+        grid-area: primary !important;
+        align-self: center !important;
+    }
+    form[data-type="unified-composer"] [class*="grid-area:trailing"] {
+        order: 2 !important;
+        grid-area: trailing !important;
+        align-self: center !important;
+        display: flex !important;
+        gap: 0.5rem !important;
+    }
+
+    /* Prevent accidental column wrap of action buttons */
+    form[data-type="unified-composer"] [class*="grid-area:trailing"] > * {
+        flex: 0 0 auto !important;
+    }
+
+    /* Keep the "Thinking" pill and similar chips below in footer row */
+    form[data-type="unified-composer"] [class*="grid-area:footer"] {
+        grid-area: footer !important;
+        width: 100% !important;
+    }
+
+    /* Avoid vertical stacking by removing forced multi-row layout when expanded */
+    .group-data-expanded\/composer\:\[grid-template-areas\:\'header_header_header\'_\'primary_primary_primary\'_\'leading_footer_trailing\'\] {
+        grid-template-areas: 'leading primary trailing' '._ footer ._' !important;
+    }
+
     form[data-type="unified-composer"] [class*="grid-area:primary"] {
         order: 1;
         flex: 1;
@@ -301,9 +355,9 @@
 
     form[data-type="unified-composer"] [class*="grid-area:trailing"] {
         order: 2;
-        display: flex;
-        gap: 0.5rem;
-        align-items: center;
+        display: flex !important;
+        gap: 0.5rem !important;
+        align-items: center !important;
         margin: 0 !important;
         padding: 0 !important;
     }
@@ -337,6 +391,11 @@
         box-shadow: none !important;
         border-radius: 0 !important;
         padding: 0.15rem 0.35rem !important;
+        display: grid !important;
+        grid-template-areas: 'leading primary trailing' '._ footer ._' !important;
+        grid-template-columns: auto 1fr auto !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
     }
 
     /* hide footer disclaimer / system text in composer */
