@@ -120,9 +120,9 @@
         transform: translateY(-1px);
     }
 
-    /* make user text blue */
+    /* make user text a softer, lighter blue for dark backgrounds */
     [data-message-author-role="user"] .user-message-bubble-color .whitespace-pre-wrap {
-        color: blue;
+        color: oklch(0.78 0.12 250);
     }
 
     /* ------------- assistant bubble ------------- */
@@ -132,7 +132,7 @@
         color-mix(in oklch, var(--bg-dark) 90%, black) 100%);
         border-radius: 0;
         border: none;
-        color: red;
+        color: oklch(0.72 0.12 30);
         box-shadow: var(--shadow-soft);
         padding: 1rem 1.25rem;
         margin-block: 0.4rem;
