@@ -515,6 +515,178 @@
         backdrop-filter: none !important;
     }
 
+    /* Sidebar: shell surfaces */
+    nav[aria-label="Chat history"],
+    nav[aria-label="Chat history"] .bg-token-bg-elevated-secondary,
+    nav[aria-label="Chat history"] .sticky,
+    nav[aria-label="Chat history"] aside,
+    nav[aria-label="Chat history"] .group/scrollport {
+        background: color-mix(in oklch, var(--bg-dark) 94%, black) !important;
+        box-shadow: none !important;
+    }
+
+    /* Sidebar: section headers ("Projects", "Chats") */
+    nav[aria-label="Chat history"] .__menu-label {
+        color: var(--text-muted) !important;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        text-shadow: 0 0 6px color-mix(in oklch, var(--primary) 20%, transparent);
+    }
+
+    /* Sidebar: top header row (Home + collapse) */
+    #sidebar-header > a[aria-label="Home"],
+    #sidebar-header button[aria-label="Close sidebar"] {
+        border-radius: 2px !important;
+        border: 1px solid color-mix(in oklch, var(--border) 80%, black) !important;
+        background: var(--bg-dark) !important;
+        color: var(--text-muted) !important;
+        box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--border-muted) 60%, black) !important;
+    }
+
+    #sidebar-header > a[aria-label="Home"]:hover,
+    #sidebar-header button[aria-label="Close sidebar"]:hover {
+        border-color: var(--highlight) !important;
+        color: var(--primary) !important;
+        box-shadow: 0 0 12px color-mix(in oklch, var(--highlight) 40%, transparent) !important;
+    }
+
+    #sidebar-header > a[aria-label="Home"] .icon-lg,
+    #sidebar-header button[aria-label="Close sidebar"] .icon,
+    #sidebar-header button[aria-label="Close sidebar"] .icon-md {
+        filter: drop-shadow(0 0 4px color-mix(in oklch, var(--primary) 25%, transparent));
+    }
+
+    /* Sidebar: primary items (New chat, Search chats, Library, Codex, GPTs) */
+    /* Button: New chat (sidebar) */
+    a[data-testid="create-new-chat-button"].__menu-item,
+    /* Button: Search chats */
+    .__menu-item:has(.truncate:contains("Search chats")),
+    /* Button: Library entry */
+    a[data-testid="sidebar-item-library"].__menu-item,
+    /* Button: Codex */
+    a.__menu-item[href="/codex"],
+    /* Button: GPTs */
+    a[data-testid="explore-gpts-button"].__menu-item {
+        border-radius: 2px !important;
+        border: 1px solid color-mix(in oklch, var(--border) 80%, black) !important;
+        background: var(--bg-dark) !important;
+        color: var(--text) !important;
+        box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--border-muted) 60%, black) !important;
+    }
+
+    /* Note: :has and :contains support varies; fallback: style all root menu items */
+    nav[aria-label="Chat history"] .__menu-item.hoverable {
+        border-radius: 2px;
+    }
+
+    /* Sidebar items hover */
+    a[data-testid="create-new-chat-button"].__menu-item:hover,
+    a[data-testid="sidebar-item-library"].__menu-item:hover,
+    a.__menu-item[href="/codex"]:hover,
+    a[data-testid="explore-gpts-button"].__menu-item:hover,
+    nav[aria-label="Chat history"] .__menu-item.hoverable:hover {
+        border-color: var(--highlight) !important;
+        color: var(--primary) !important;
+        box-shadow: 0 0 12px color-mix(in oklch, var(--highlight) 40%, transparent) !important;
+    }
+
+    /* Sidebar: icons glow for primary items */
+    a[data-testid="create-new-chat-button"].__menu-item .icon svg,
+    a[data-testid="sidebar-item-library"].__menu-item .icon svg,
+    a.__menu-item[href="/codex"] .icon svg,
+    a[data-testid="explore-gpts-button"].__menu-item .icon svg {
+        filter: drop-shadow(0 0 4px color-mix(in oklch, var(--primary) 25%, transparent));
+    }
+
+    /* Sidebar: expando section header chips (Projects/Chats row) */
+    .group.sidebar-expando-section .__menu-item[data-no-hover-bg="true"],
+    .group\/sidebar-expando-section .__menu-item[data-no-hover-bg="true"] {
+        border-radius: 2px !important;
+        border: 1px solid color-mix(in oklch, var(--border-muted) 70%, black) !important;
+        background: color-mix(in oklch, var(--bg) 90%, black) !important;
+        color: var(--text-muted) !important;
+        box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--border-muted) 50%, black) !important;
+    }
+
+    /* Sidebar: Project rows and trailing kebab buttons */
+    .group.sidebar-expando-section .__menu-item.hoverable,
+    .group.sidebar-expando-section .__menu-item .__menu-item-trailing-btn,
+    .__menu-item .__menu-item-trailing-btn,
+    button[aria-label="Open conversation options"] {
+        border-radius: 2px !important;
+        border: 1px solid color-mix(in oklch, var(--border) 80%, black) !important;
+        background: var(--bg-dark) !important;
+        color: var(--text-muted) !important;
+        box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--border-muted) 60%, black) !important;
+    }
+
+    .group.sidebar-expando-section .__menu-item.hoverable:hover,
+    .group.sidebar-expando-section .__menu-item .__menu-item-trailing-btn:hover,
+    .__menu-item .__menu-item-trailing-btn:hover,
+    button[aria-label="Open conversation options"]:hover {
+        border-color: var(--highlight) !important;
+        color: var(--primary) !important;
+        box-shadow: 0 0 12px color-mix(in oklch, var(--highlight) 40%, transparent) !important;
+    }
+
+    .group.sidebar-expando-section .__menu-item.hoverable svg,
+    .__menu-item .__menu-item-trailing-btn svg,
+    button[aria-label="Open conversation options"] svg {
+        filter: drop-shadow(0 0 4px color-mix(in oklch, var(--primary) 25%, transparent));
+    }
+
+    /* Sidebar: history items rows */
+    nav[aria-label="Chat history"] #history .__menu-item.hoverable {
+        border-radius: 2px !important;
+        border: 1px solid color-mix(in oklch, var(--border) 80%, black) !important;
+        background: var(--bg-dark) !important;
+        color: var(--text) !important;
+        box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--border-muted) 60%, black) !important;
+    }
+
+    nav[aria-label="Chat history"] #history .__menu-item.hoverable[data-active] {
+        border-color: var(--highlight) !important;
+        box-shadow: 0 0 10px color-mix(in oklch, var(--highlight) 35%, transparent) !important;
+        color: var(--primary) !important;
+    }
+
+    nav[aria-label="Chat history"] #history .__menu-item.hoverable:hover {
+        border-color: var(--highlight) !important;
+        color: var(--primary) !important;
+        box-shadow: 0 0 12px color-mix(in oklch, var(--highlight) 40%, transparent) !important;
+    }
+
+    /* Sidebar: bottom profile button and CTA */
+    /* Button: Open profile menu */
+    [data-testid="accounts-profile-button"].__menu-item {
+        border-radius: 2px !important;
+        border: 1px solid color-mix(in oklch, var(--border) 80%, black) !important;
+        background: var(--bg-dark) !important;
+        color: var(--text) !important;
+        box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--border-muted) 60%, black) !important;
+    }
+
+    [data-testid="accounts-profile-button"].__menu-item:hover {
+        border-color: var(--highlight) !important;
+        color: var(--primary) !important;
+        box-shadow: 0 0 12px color-mix(in oklch, var(--highlight) 40%, transparent) !important;
+    }
+
+    /* Button: Invite team members (bottom CTA) */
+    .border-token-interactive-border-secondary-default.rounded-full.border {
+        border-radius: 2px !important;
+        border: 1px solid color-mix(in oklch, var(--border) 80%, black) !important;
+        background: var(--bg-dark) !important;
+        color: var(--text) !important;
+        box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--border-muted) 60%, black) !important;
+    }
+
+    .border-token-interactive-border-secondary-default.rounded-full.border:hover {
+        border-color: var(--highlight) !important;
+        color: var(--primary) !important;
+        box-shadow: 0 0 12px color-mix(in oklch, var(--highlight) 40%, transparent) !important;
+    }
+
     /* Button: Model selector (current model) */
     button[aria-label^="Model selector, current model is"],
     button[data-testid="model-switcher-dropdown-button"] {
