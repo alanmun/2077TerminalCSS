@@ -330,17 +330,16 @@
         content: "▯";
         color: var(--primary);
         display: inline-block;
-        margin-left: 1px;
-        font-size: 1.5em;
+        margin-left: -4px;
         line-height: 1;
         vertical-align: middle;
-        transform: scale(1.5);
+        transform: scale(2);
         transform-origin: left center;
     }
 
     form[data-type="unified-composer"] .ProseMirror:focus::after {
         content: "█";
-        font-size: 1.2em;
+        margin-left: 1px;
         transform: none;
     }
 
