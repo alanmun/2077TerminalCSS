@@ -332,9 +332,10 @@
         display: inline-block;
         margin-left: -4px;
         line-height: 1;
-        vertical-align: middle;
+        vertical-align: baseline;
         transform: scale(2);
         transform-origin: left center;
+        pointer-events: none;
     }
 
     form[data-type="unified-composer"] .ProseMirror:focus::after {
@@ -814,8 +815,10 @@
     }
 
     form[data-type="unified-composer"] .ProseMirror {
-        display: flex;
-        align-items: center;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: left;
+        white-space: pre-wrap;
     }
 
     form[data-type="unified-composer"] .ProseMirror p {
