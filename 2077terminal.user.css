@@ -106,12 +106,12 @@
     [data-message-author-role="user"] .user-message-bubble-color {
         background: color-mix(in oklch, var(--bg-light) 70%, black);
         color: var(--text);
-        border-radius: var(--radius-lg);
-        border: var(--border-width) solid var(--border);
+        border-radius: 0;
+        border: none;
         box-shadow: var(--shadow-soft);
         font-family: var(--font-mono);
         text-shadow: 0 0 4px color-mix(in oklch, var(--primary) 30%, transparent);
-        transition: box-shadow var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
+        transition: box-shadow var(--transition-fast), transform var(--transition-fast);
     }
 
     [data-message-author-role="user"] .user-message-bubble-color:hover {
@@ -120,9 +120,9 @@
         transform: translateY(-1px);
     }
 
-    /* make user text a bit more "phosphor" green */
+    /* make user text blue */
     [data-message-author-role="user"] .user-message-bubble-color .whitespace-pre-wrap {
-        color: var(--primary);
+        color: blue;
     }
 
     /* ------------- assistant bubble ------------- */
@@ -130,8 +130,9 @@
         background: linear-gradient( 135deg,
         color-mix(in oklch, var(--bg) 90%, black) 0%,
         color-mix(in oklch, var(--bg-dark) 90%, black) 100%);
-        border-radius: var(--radius-lg);
-        border: var(--border-width) solid var(--border-muted);
+        border-radius: 0;
+        border: none;
+        color: red;
         box-shadow: var(--shadow-soft);
         padding: 1rem 1.25rem;
         margin-block: 0.4rem;
