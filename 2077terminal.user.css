@@ -482,6 +482,43 @@
         filter: drop-shadow(0 0 4px color-mix(in oklch, var(--primary) 25%, transparent));
     }
 
+    /* Turn action bar buttons: match TUI knob style */
+    button[aria-label="Copy"],
+    button[data-testid="copy-turn-action-button"],
+    button[aria-label="Good response"],
+    button[aria-label="Bad response"],
+    button[aria-label="Share"],
+    button[aria-label="Switch model"],
+    button[aria-label="More actions"] {
+        border-radius: 2px !important;
+        border: 1px solid color-mix(in oklch, var(--border) 80%, black) !important;
+        background: var(--bg-dark) !important;
+        color: var(--text-muted) !important;
+        box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--border-muted) 60%, black) !important;
+    }
+
+    button[aria-label="Copy"]:hover,
+    button[data-testid="copy-turn-action-button"]:hover,
+    button[aria-label="Good response"]:hover,
+    button[aria-label="Bad response"]:hover,
+    button[aria-label="Share"]:hover,
+    button[aria-label="Switch model"]:hover,
+    button[aria-label="More actions"]:hover {
+        border-color: var(--highlight) !important;
+        color: var(--primary) !important;
+        box-shadow: 0 0 12px color-mix(in oklch, var(--highlight) 40%, transparent) !important;
+    }
+
+    button[aria-label="Copy"] svg,
+    button[data-testid="copy-turn-action-button"] svg,
+    button[aria-label="Good response"] svg,
+    button[aria-label="Bad response"] svg,
+    button[aria-label="Share"] svg,
+    button[aria-label="Switch model"] svg,
+    button[aria-label="More actions"] svg {
+        filter: drop-shadow(0 0 4px color-mix(in oklch, var(--primary) 25%, transparent));
+    }
+
     /* keep the primary text line vertically centered */
     form[data-type="unified-composer"] [class*="grid-template-areas"] > [class*="grid-area:primary"] {
         margin: 0 !important;
