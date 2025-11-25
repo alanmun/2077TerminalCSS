@@ -46,6 +46,17 @@
         text-rendering: geometricPrecision;
     }
 
+    /* Force thread content container to blend with theme bg (override inline/background classes) */
+    .text-base.mx-auto.\[--thread-content-margin\:--spacing\(4\)\].thread-sm\:\[--thread-content-margin\:--spacing\(6\)\].thread-lg\:\[--thread-content-margin\:--spacing\(16\)\].px-\(\--thread-content-margin\) {
+        background: var(--bg) !important;
+        background-color: var(--bg) !important;
+    }
+
+    /* Also ensure any bg-clip-padding shells don't leak default gray */
+    .bg-clip-padding {
+        background-color: var(--bg) !important;
+    }
+
     /* Ensure the composer container blends with chat background (kills default gray) */
     #thread-bottom-container,
     #thread-bottom-container *:where(.bg-token-bg-primary),
@@ -384,6 +395,12 @@
     #thread-bottom .max-w-\(--thread-content-max-width\),
     #thread-bottom .flex {
         background: var(--bg-dark) !important;
+    }
+
+    /* Ensure the immediate wrapper of the composer uses theme bg as well */
+    #thread-bottom-container .text-base.mx-auto.\[--thread-content-margin\:--spacing\(4\)\].thread-sm\:\[--thread-content-margin\:--spacing\(6\)\].thread-lg\:\[--thread-content-margin\:--spacing\(16\)\].px-\(\--thread-content-margin\) {
+        background: var(--bg-dark) !important;
+        background-color: var(--bg-dark) !important;
     }
 
     /* blend composer with bottom shell */
