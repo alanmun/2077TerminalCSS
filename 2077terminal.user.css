@@ -463,7 +463,7 @@
         filter: drop-shadow(0 0 4px color-mix(in oklch, var(--primary) 25%, transparent));
     }
 
-    /* "chat continues below" down-arrow button: align with other knobs/buttons */
+    /* Button: Chat continues below (down-arrow) — align with other knobs/buttons */
     button.cursor-pointer.absolute.z-30.bg-clip-padding.border.end-1\/2.translate-x-1\/2.bg-token-main-surface-primary.w-8.h-8.flex.items-center.justify-center.print\:hidden {
         border-radius: 2px !important;
         border: 1px solid color-mix(in oklch, var(--border) 80%, black) !important;
@@ -472,23 +472,31 @@
         box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--border-muted) 60%, black) !important;
     }
 
+    /* Button: Chat continues below (down-arrow) — hover */
     button.cursor-pointer.absolute.z-30.bg-clip-padding.border.end-1\/2.translate-x-1\/2.bg-token-main-surface-primary.w-8.h-8.flex.items-center.justify-center.print\:hidden:hover {
         border-color: var(--highlight) !important;
         color: var(--primary) !important;
         box-shadow: 0 0 12px color-mix(in oklch, var(--highlight) 40%, transparent) !important;
     }
 
+    /* Button: Chat continues below (down-arrow) — icon glow */
     button.cursor-pointer.absolute.z-30.bg-clip-padding.border.end-1\/2.translate-x-1\/2.bg-token-main-surface-primary.w-8.h-8.flex.items-center.justify-center.print\:hidden svg {
         filter: drop-shadow(0 0 4px color-mix(in oklch, var(--primary) 25%, transparent));
     }
 
     /* Turn action bar buttons: match TUI knob style */
+    /* Button: Copy */
     button[aria-label="Copy"],
     button[data-testid="copy-turn-action-button"],
+    /* Button: Good response */
     button[aria-label="Good response"],
+    /* Button: Bad response */
     button[aria-label="Bad response"],
+    /* Button: Share */
     button[aria-label="Share"],
+    /* Button: Switch model */
     button[aria-label="Switch model"],
+    /* Button: More actions */
     button[aria-label="More actions"] {
         border-radius: 2px !important;
         border: 1px solid color-mix(in oklch, var(--border) 80%, black) !important;
@@ -497,24 +505,36 @@
         box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--border-muted) 60%, black) !important;
     }
 
+    /* Button: Copy — hover */
     button[aria-label="Copy"]:hover,
     button[data-testid="copy-turn-action-button"]:hover,
+    /* Button: Good response — hover */
     button[aria-label="Good response"]:hover,
+    /* Button: Bad response — hover */
     button[aria-label="Bad response"]:hover,
+    /* Button: Share — hover */
     button[aria-label="Share"]:hover,
+    /* Button: Switch model — hover */
     button[aria-label="Switch model"]:hover,
+    /* Button: More actions — hover */
     button[aria-label="More actions"]:hover {
         border-color: var(--highlight) !important;
         color: var(--primary) !important;
         box-shadow: 0 0 12px color-mix(in oklch, var(--highlight) 40%, transparent) !important;
     }
 
+    /* Button: Copy — icon glow */
     button[aria-label="Copy"] svg,
     button[data-testid="copy-turn-action-button"] svg,
+    /* Button: Good response — icon glow */
     button[aria-label="Good response"] svg,
+    /* Button: Bad response — icon glow */
     button[aria-label="Bad response"] svg,
+    /* Button: Share — icon glow */
     button[aria-label="Share"] svg,
+    /* Button: Switch model — icon glow */
     button[aria-label="Switch model"] svg,
+    /* Button: More actions — icon glow */
     button[aria-label="More actions"] svg {
         filter: drop-shadow(0 0 4px color-mix(in oklch, var(--primary) 25%, transparent));
     }
