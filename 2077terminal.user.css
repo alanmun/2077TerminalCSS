@@ -279,13 +279,15 @@
     form[data-type="unified-composer"] ._prosemirror-parent_1dsxi_2,
     form[data-type="unified-composer"] .ProseMirror {
         font-family: var(--font-mono);
-        color: var(--text);
+        /* Match user bubble blue */
+        color: oklch(0.78 0.12 250);
         background: transparent;
         border: none;
         border-radius: 0;
         padding: 0.25rem 0.35rem;
-        caret-color: transparent; /* hide thin caret */
-        text-shadow: 0 0 4px color-mix(in oklch, var(--primary) 35%, transparent);
+        /* Restore native caret visibility */
+        caret-color: currentColor;
+        text-shadow: none;
         position: relative;
         min-height: 2.5rem; /* avoid growth on focus */
         box-shadow: none;
